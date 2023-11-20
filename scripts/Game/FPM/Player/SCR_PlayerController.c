@@ -19,7 +19,6 @@ modded class SCR_PlayerController : PlayerController
 	void FPM_RpcAsk_Subscribe()
 	{
 		m_pFPM_GameMode.FPM_Subscribe(this);
-		Rpc(FPM_RpcDo_Initialize, m_pFPM_GameMode.FPM_GetDataList());
 	}
 	
 	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
@@ -34,7 +33,7 @@ modded class SCR_PlayerController : PlayerController
 		m_pFPM_GameMode.FPM_Unsubscribe(this);
 	}
 
-	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
+	[RplRpc(RplChannel.Unreliable, RplRcver.Owner)]
 	void FPM_RpcDo_UpdateMarkerData(array<ref FPM_MarkerData> data)
 	{
 		m_pFPM_MapEntity.FPM_UpdateMarkerData(data);

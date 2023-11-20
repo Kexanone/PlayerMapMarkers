@@ -21,6 +21,7 @@ modded class SCR_BaseGameMode : BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void FPM_Subscribe(SCR_PlayerController subscriber)
 	{
+		subscriber.Rpc(subscriber.FPM_RpcDo_Initialize, m_aFPM_DataList);
 		m_aFPM_Subscribers.Insert(subscriber);
 	}
 	
