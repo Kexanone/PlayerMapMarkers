@@ -124,4 +124,13 @@ modded class SCR_BaseGameMode : BaseGameMode
 			subscriber.Rpc(subscriber.FPM_RpcDo_UpdateMarkerData, m_aFPM_DataList);
 		};
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	//! Unsubscribe player when disconnected while looking at the map
+	override protected void OnPlayerDisconnected(int playerId, KickCauseCode cause, int timeout)
+	{
+		SCR_PlayerController subscriber =  SCR_PlayerController.Cast(GetGame().GetPlayerManager().GetPlayerController(playerId));
+		FPM_Unsubscribe(subscriber);
+		super.OnPlayerDisconnected(playerId, cause, timeout);
+	}
 }
